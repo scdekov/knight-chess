@@ -5,22 +5,29 @@ class TestKnightChess:
     def test_solve(self):
         assert KnightChess.solve('123') == {
             'end_position': (5, 2),
-            'furthest_point': (5, 2),
+            'furthest_points': [(5, 2)],
             'same_x_y_points': [(3, 3)]
         }
 
     def test_solve__no_moves(self):
         assert KnightChess.solve('') == {
             'end_position': (0, 0),
-            'furthest_point': (0, 0),
+            'furthest_points': [(0, 0)],
             'same_x_y_points': []
         }
 
     def test_solve__multiple_same_x_y_points(self):
         assert KnightChess.solve('121237') == {
             'end_position': (6, 6),
-            'furthest_point': (8, 5),
+            'furthest_points': [(8, 5)],
             'same_x_y_points': [(3, 3), (6, 6)]
+        }
+
+    def test_solve__multiple_furthest_points(self):
+        assert KnightChess.solve('1155558') == {
+            'end_position': (-3, -2),
+            'furthest_points': [(2, 4), (-2, -4)],
+            'same_x_y_points': []
         }
 
     def test_move(self):

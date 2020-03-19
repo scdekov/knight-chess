@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import math
 
 
@@ -15,25 +16,28 @@ class KnightChess:
 
     @classmethod
     def solve(cls, moves):
-        furthest_point = (0, 0)
+        start_position = (0, 0)
+        furthest_points = OrderedDict({start_position: 1})
         furthest_distance = 0
-        same_x_y_points = set()
+        same_x_y_points = OrderedDict()
 
-        position = (0, 0)
+        position = start_position
         for move in moves:
             position = cls._move(position, move)
-            if position[0] == position[1]:
-                same_x_y_points.add(position)
+            if position[0] == position[1] and position != start_position:
+                same_x_y_points[position] = 1
 
             distance_from_start = cls._distance_from_start(position)
             if distance_from_start > furthest_distance:
-                furthest_point = position
+                furthest_points = OrderedDict({position: 1})
                 furthest_distance = distance_from_start
+            elif distance_from_start == furthest_distance:
+                furthest_points[position] = 1
 
         return {
             'end_position': position,
-            'furthest_point': furthest_point,
-            'same_x_y_points': list(same_x_y_points)
+            'furthest_points': list(furthest_points.keys()),
+            'same_x_y_points': list(same_x_y_points.keys())
         }
 
     @classmethod
