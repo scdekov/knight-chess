@@ -1,3 +1,6 @@
+import math
+
+
 class KnightChess:
     MOVE_ACTIONS = {
         1: (1, 2),
@@ -14,3 +17,7 @@ class KnightChess:
     def move(cls, starting_point, move_type):
         action = cls.MOVE_ACTIONS[move_type]
         return (starting_point[0] + action[0], starting_point[1] + action[1])
+
+    @classmethod
+    def _distance_from_start(cls, point):
+        return math.sqrt(point[0] ** 2 + point[1] ** 2)

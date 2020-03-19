@@ -16,3 +16,9 @@ class TestKnightChess:
 
         assert KnightChess.move((0, 0), 5) == (-1, -2)
         assert KnightChess.move((-1, -2), 6) == (-3, -3)
+
+    def test_distance_from_start(self):
+        assert KnightChess._distance_from_start((3, 4)) == 5
+        assert KnightChess._distance_from_start((4, 3)) == 5
+        assert KnightChess._distance_from_start((6, 8)) == 10
+        assert KnightChess._distance_from_start((15, 8)) == 17
