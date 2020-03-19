@@ -14,7 +14,7 @@ class KnightChess:
     }
 
     @classmethod
-    def move(cls, starting_point, move_type):
+    def _move(cls, starting_point, move_type):
         action = cls.MOVE_ACTIONS[move_type]
         return (starting_point[0] + action[0], starting_point[1] + action[1])
 
